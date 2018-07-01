@@ -58,7 +58,7 @@ include_once "fungsi.php";
     <body class="login example1">
         <div class="main-login col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
             <div class="logo">
-                PREDIKSI MENENTUKAN KELANCARAN PEMBAYARAN KOPERASI SIMPAN PINJAM WANITA "HARUM MANIS" DESA SIRNOBOYO
+                PREDIKSI MENENTUKAN KELANCARAN PEMBAYARAN KOPERASI SIMPAN PINJAM 
             </div>
             <!-- start: LOGIN BOX -->
             <div class="box-login">

@@ -8,10 +8,10 @@ if (isset($_GET['menu'])) {
     <!-- start: SIDEBAR -->
     <div class="main-navigation navbar-collapse collapse">
         <!-- start: MAIN MENU TOGGLER BUTTON -->
-        <div class="navigation-toggler">
+<!--        <div class="navigation-toggler">
             <i class="clip-chevron-left"></i>
             <i class="clip-chevron-right"></i>
-        </div>
+        </div>-->
         <!-- end: MAIN MENU TOGGLER BUTTON -->
         <!-- start: MAIN NAVIGATION MENU -->
         <ul class="main-navigation-menu">
