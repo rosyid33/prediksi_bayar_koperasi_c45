@@ -1,13 +1,16 @@
 <?php
 
 function can_access_menu($menu){
-    if($_SESSION['kepribadian_c45_level']==2 & ($menu=='klasifikasi')){// || $menu=='view_rule')){
-        return true;
+    if($_SESSION['koperasi_c45_level']==2 & $menu=='olah_data'){// || $menu=='view_rule')){
+        return false;
     }
-    if($_SESSION['kepribadian_c45_level']==1 & $menu!='klasifikasi'){
-        return true;
+    if($_SESSION['koperasi_c45_level']==2 & $menu=='data_mining'){
+        return false;
     }
-    return false;
+    if($_SESSION['koperasi_c45_level']==2 & $menu=='prediksi'){
+        return false;
+    }
+    return true;
 }
 
 function sudah_klasifikasi($db_object, $id_siswa){
@@ -808,4 +811,3 @@ function format_date_db($date){
     return $date_ex[2]."-".$date_ex[1]."-".$date_ex[0];
 }
 
-?>
