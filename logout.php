@@ -1,0 +1,9 @@
+<?php
+    session_start();
+    unset($_SESSION['koperasi_c45_id']);
+    unset($_SESSION['koperasi_c45_username']);
+    unset($_SESSION['koperasi_c45_level']);
+    unset($_SESSION['koperasi_c45_key']);
+    unset($_SESSION['koperasi_c45_last_login']);
+    session_destroy();
+    header("location:login.php");
