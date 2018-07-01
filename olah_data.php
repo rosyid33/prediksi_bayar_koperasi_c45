@@ -56,11 +56,35 @@ $db_object = new database();
                     <?php
                 }
             }
+            
+            if(isset($_POST['delete_all'])){
+                $sql = "TRUNCATE data_latih";
+                        $result = $db_object->db_query($sql);
+                 
+                if ($result) {
+                    ?>
+                    <script> location.replace("?menu=olah_data&pesan_success=Data berhasil dihapus");</script>
+                    <?php
+                } else {
+                    ?>
+                    <script> location.replace("?menu=olah_data&pesan_error=Data gagal dihapus");</script>
+                    <?php
+                }
+            }
 
 
             $query = $db_object->db_query("SELECT * FROM data_latih order by(id)");
             $jumlah = $db_object->db_num_rows($query);
             echo "<br><br>";
+            
+            if(isset($_REQUEST['pesan_success'])){
+                display_success($_REQUEST['pesan_success']);
+            }
+            
+            if(isset($_REQUEST['pesan_error'])){
+                display_error($_REQUEST['pesan_error']);
+            }
+            
             ?>
 
             <form method="post" enctype="multipart/form-data" action="">
@@ -72,7 +96,9 @@ $db_object = new database();
                 </div>
                 <div class="form-group">
                     <input name="upload" type="submit" value="Upload Data" class="btn btn-success">
-
+                    <input name="delete_all" type="submit" value="Delete All Data" class="btn btn-danger">
+                    <a href="index.php?menu=olah_data" class="btn btn-default">
+                        <i class="fa fa-refresh"></i>Refresh</a>
                 </div>
             </form>
             <?php
