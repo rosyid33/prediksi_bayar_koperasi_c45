@@ -134,10 +134,10 @@ function pembentukan_tree($db_object, $N_parent, $kasus) {
             $jumlahlancar = jumlah_data($db_object, "$Nlancar");
             $jumlahmacet = jumlah_data($db_object, "$Nmacet");
             if($jumlahlancar >= $jumlahmacet ) {
-                $keputusan = 'Lancar';
+                $keputusan = 'lancar';
             }
             else {
-                $keputusan = 'Macet';
+                $keputusan = 'macet';
             }
             //insert atau lakukan pemangkasan cabang
             pangkas($db_object, $N_parent, $kasus, $keputusan);
