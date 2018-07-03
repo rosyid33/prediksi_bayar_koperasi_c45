@@ -55,8 +55,8 @@ function pembentukan_tree($db_object, $N_parent, $kasus) {
         if ($kondisi != '') {
             $kondisi_kelas_asli = $kondisi . " AND ";
         }
-        $jml_lancar = jumlah_data($db_object, "$kondisi_kelas_asli kelas_asli='Lancar'");
-        $jml_macet = jumlah_data($db_object, "$kondisi_kelas_asli kelas_asli='Macet'");
+        $jml_lancar = jumlah_data($db_object, "$kondisi_kelas_asli kelas_asli='lancar'");
+        $jml_macet = jumlah_data($db_object, "$kondisi_kelas_asli kelas_asli='macet'");
         
         $jml_total = $jml_lancar + $jml_macet ;
         echo "Jumlah data = " . $jml_total . "<br>";
@@ -129,8 +129,8 @@ function pembentukan_tree($db_object, $N_parent, $kasus) {
         //jika max gain = 0 perhitungan dihentikan dan mengambil keputusan
         if ($max_gain == 0) {
             echo "<br>LEAF ";
-            $Nlancar = $kondisi . " AND kelas_asli='Lancar'";
-            $Nmacet = $kondisi . " AND kelas_asli='Macet'";
+            $Nlancar = $kondisi . " AND kelas_asli='lancar'";
+            $Nmacet = $kondisi . " AND kelas_asli='macet'";
             $jumlahlancar = jumlah_data($db_object, "$Nlancar");
             $jumlahmacet = jumlah_data($db_object, "$Nmacet");
             if($jumlahlancar >= $jumlahmacet ) {
@@ -291,12 +291,12 @@ function hitung_gain($db_object, $kasus, $atribut, $ent_all, $kondisi1, $kondisi
 
     //untuk atribut 2 nilai atribut	
     if ($kondisi3 == '') {
-        $j_lancar1 = jumlah_data($db_object, "$data_kasus kelas_asli='Lancar' AND $kondisi1");
-        $j_macet1 = jumlah_data($db_object, "$data_kasus kelas_asli='Macet' AND $kondisi1");
+        $j_lancar1 = jumlah_data($db_object, "$data_kasus kelas_asli='lancar' AND $kondisi1");
+        $j_macet1 = jumlah_data($db_object, "$data_kasus kelas_asli='macet' AND $kondisi1");
         $jml1 = $j_lancar1 + $j_macet1;
         
-        $j_lancar2 = jumlah_data($db_object, "$data_kasus kelas_asli='Lancar' AND $kondisi2");
-        $j_macet2 = jumlah_data($db_object, "$data_kasus kelas_asli='Macet' AND $kondisi2");
+        $j_lancar2 = jumlah_data($db_object, "$data_kasus kelas_asli='lancar' AND $kondisi2");
+        $j_macet2 = jumlah_data($db_object, "$data_kasus kelas_asli='macet' AND $kondisi2");
         $jml2 = $j_lancar2 + $j_macet2 ;
         //hitung entropy masing-masing kondisi
         $jml_total = $jml1 + $jml2;
@@ -329,16 +329,16 @@ function hitung_gain($db_object, $kasus, $atribut, $ent_all, $kondisi1, $kondisi
     }
      //untuk atribut 3 nilai atribut
      else if($kondisi4==''){
-     	$j_lancar1 = jumlah_data($db_object, "$data_kasus kelas_asli='Lancar' AND $kondisi1");
-     	$j_macet1 = jumlah_data($db_object, "$data_kasus kelas_asli='Macet' AND $kondisi1");
+     	$j_lancar1 = jumlah_data($db_object, "$data_kasus kelas_asli='lancar' AND $kondisi1");
+     	$j_macet1 = jumlah_data($db_object, "$data_kasus kelas_asli='macet' AND $kondisi1");
      	$jml1 = $j_lancar1 + $j_macet1 ;
         
-     	$j_lancar2 = jumlah_data($db_object, "$data_kasus kelas_asli='Lancar' AND $kondisi2");
-     	$j_macet2 = jumlah_data($db_object, "$data_kasus kelas_asli='Macet' AND $kondisi2");
+     	$j_lancar2 = jumlah_data($db_object, "$data_kasus kelas_asli='lancar' AND $kondisi2");
+     	$j_macet2 = jumlah_data($db_object, "$data_kasus kelas_asli='macet' AND $kondisi2");
      	$jml2 = $j_lancar2 + $j_macet2;
         
-     	$j_lancar3 = jumlah_data($db_object, "$data_kasus kelas_asli='Lancar' AND $kondisi3");
-     	$j_macet3 = jumlah_data($db_object, "$data_kasus kelas_asli='Macet' AND $kondisi3");
+     	$j_lancar3 = jumlah_data($db_object, "$data_kasus kelas_asli='lancar' AND $kondisi3");
+     	$j_macet3 = jumlah_data($db_object, "$data_kasus kelas_asli='macet' AND $kondisi3");
      	$jml3 = $j_lancar3 + $j_macet3;
         
      	//hitung entropy masing-masing kondisi
