@@ -18,7 +18,7 @@ $db_object = new database();
                     <!-- start: PAGE TITLE & BREADCRUMB -->
 
                     <div class="page-header">
-                        <h1>Uji Akurasi </h1>
+                        <h1>Uji Rule </h1>
                     </div>
                     <!-- end: PAGE TITLE & BREADCRUMB -->
                 </div>
@@ -35,12 +35,12 @@ $db_object = new database();
                 // $temp_date = $temp_produk = "";
                 for ($i = 2; $i <= $baris; $i++) {
                     if (!empty($data->val($i, 2))) {
-                        $value = "(\"" . $data->val($i, 2) . "\", '" . $data->val($i, 3) . "', "
-                                . $data->val($i, 4) . ", '" . $data->val($i, 5) . "', "
-                                . $data->val($i, 6) . ", " . $data->val($i, 7) . ", "
-                                . $data->val($i, 8) . ", " . $data->val($i, 9) . ", '" . $data->val($i, 10) . "')";
+                        $penghasilan = str_replace(".", "", $data->val($i, 5));
+                        $value = "(\"" . $data->val($i, 2) . "\", '" . strtolower($data->val($i, 3)) . "', '"
+                                . strtolower($data->val($i, 4)) . "' , '" . $penghasilan . "', "
+                                . $data->val($i, 6) . ", '" . strtolower($data->val($i, 7)) . "')";
                         $sql = "INSERT INTO data_uji "
-                                . " (nama, jenis_kelamin, usia, sekolah, jawaban_a, jawaban_b, jawaban_c, jawaban_d, kelas_asli)"
+                                . " (nama, status_pernikahan, status_rumah, penghasilan, umur, kelas_asli)"
                                 . " VALUES " . $value;
                         $result = $db_object->db_query($sql);
                     }
@@ -88,13 +88,16 @@ $db_object = new database();
                                onClick="return confirm('Anda yakin akan hapus semua data?')">
                                 <i class="fa fa-trash"></i> Delete All Data uji
                             </a>
+                            <a href="?menu=uji_rule" class="btn btn-default">
+                                <i class="fa fa-refresh"></i> Refresh
+                            </a>
                         </div>
                     </form>
-        <?php
-        if ($jumlah == 0) {
-            echo "<center><h3>Data uji masih kosong...</h3></center>";
-        } else {
-            ?>
+                    <?php
+                    if ($jumlah == 0) {
+                        echo "<center><h3>Data uji masih kosong...</h3></center>";
+                    } else {
+                        ?>
                         <center>
                             <form method="POST" action=''>
                                 <div class="form-group">
@@ -106,44 +109,43 @@ $db_object = new database();
                         </center>
                         Jumlah data uji: <?php echo $jumlah; ?>
 
-                        <table class='table table-bordered table-striped  table-hover'>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Usia</th>
-                                <th>Sekolah</th>
-                                <th>Jawaban A</th>
-                                <th>Jawaban B</th>
-                                <th>Jawaban C</th>
-                                <th>Jawaban D</th>
-                                <th>Kelas Asli</th>
-                            </tr>
-            <?php
-            $no = 1;
-            while ($row = $db_object->db_fetch_array($query)) {
-                echo "<tr>";
-                echo "<td>" . $no . "</td>";
-                echo "<td>" . $row['nama'] . "</td>";
-                echo "<td>" . $row['jenis_kelamin'] . "</td>";
-                echo "<td>" . $row['usia'] . "</td>";
-                echo "<td>" . $row['sekolah'] . "</td>";
-                echo "<td>" . $row['jawaban_a'] . "</td>";
-                echo "<td>" . $row['jawaban_b'] . "</td>";
-                echo "<td>" . $row['jawaban_c'] . "</td>";
-                echo "<td>" . $row['jawaban_d'] . "</td>";
-                echo "<td>" . $row['kelas_asli'] . "</td>";
-                echo "</tr>";
-                $no++;
-            }
-            ?>
-
-                        </table>
-                            <?php
-                        }
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="sample-table-1">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Status Pernikahan</th>
+                                        <th>Status Rumah</th>
+                                        <th>Penghasilan</th>
+                                        <th>Umur</th>
+                                        <th>Kelas Asli</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $no = 1;
+                                    while ($row = $db_object->db_fetch_array($query)) {
+                                        echo "<tr>";
+                                        echo "<td>" . $no . "</td>";
+                                        echo "<td>" . $row['nama'] . "</td>";
+                                        echo "<td>" . $row['status_pernikahan'] . "</td>";
+                                        echo "<td>" . $row['status_rumah'] . "</td>";
+                                        echo "<td>" . $row['penghasilan'] . "</td>";
+                                        echo "<td>" . $row['umur'] . "</td>";
+                                        echo "<td>" . $row['kelas_asli'] . "</td>";
+                                        echo "</tr>";
+                                        $no++;
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php
                     }
                 }
-                ?>
+            }
+            ?>
         </div>
     </div>
 </div>
