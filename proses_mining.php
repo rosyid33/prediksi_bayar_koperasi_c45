@@ -481,7 +481,7 @@ function hitung_rasio($db_object, $kasus , $atribut , $gain , $nilai1 , $nilai2 
 }
 
 
-function klasifikasi($db_object, $n_status_rumah, $n_usia, $n_sekolah, $n_jawaban_a, $n_jawaban_b, $n_jawaban_c, $n_jawaban_d) {
+function klasifikasi($db_object, $n_status_pernikahan, $n_status_rumah, $n_penghasilan, $n_umur) {
 
     $sql = $db_object->db_query("SELECT * FROM t_keputusan");
     $keputusan = $id_rule_keputusan = "";
@@ -497,13 +497,10 @@ function klasifikasi($db_object, $n_status_rumah, $n_usia, $n_sekolah, $n_jawaba
         $rule = str_replace("=", " s ", $rule);
         $rule = str_replace(">", " l ", $rule);
         //mengganti nilai
+        $rule = str_replace("status_pernikahan", "'$n_status_pernikahan'", $rule);
         $rule = str_replace("status_rumah", "'$n_status_rumah'", $rule);
-        $rule = str_replace("usia", "'$n_usia'", $rule);
-        $rule = str_replace("sekolah", "'$n_sekolah'", $rule);
-        $rule = str_replace("jawaban_a", "'$n_jawaban_a'", $rule);
-        $rule = str_replace("jawaban_b", "$n_jawaban_b", $rule);
-        $rule = str_replace("jawaban_c", "$n_jawaban_c", $rule);
-        $rule = str_replace("jawaban_d", "$n_jawaban_d", $rule);
+        $rule = str_replace("penghasilan", "'$n_penghasilan'", $rule);
+        $rule = str_replace("umur", "'$n_umur'", $rule);
         //menghilangkan '
         $rule = str_replace("'", "", $rule);
         //explode and

@@ -37,8 +37,8 @@ $db_object = new database();
                     if (!empty($data->val($i, 2))) {
                         $penghasilan = str_replace(".", "", $data->val($i, 5));
 
-                        $value = "(\"" . $data->val($i, 2) . "\", '" . strtolower($data->val($i, 3)) . "', '"
-                                . strtolower($data->val($i, 4)) . "', '" . $penghasilan . "', "
+                        $value = "(\"" . $data->val($i, 2) . "\", '" . strtolower(trim($data->val($i, 3))) . "', '"
+                                . strtolower(trim($data->val($i, 4))) . "', '" . $penghasilan . "', "
                                 . $data->val($i, 6) . ", '" . strtolower($data->val($i, 7)) . "')";
                         $sql = "INSERT INTO data_latih "
                                 . " (nama, status_pernikahan, status_rumah, penghasilan, umur, kelas_asli)"
