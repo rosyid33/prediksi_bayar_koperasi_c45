@@ -4,6 +4,11 @@ if (!isset($_SESSION['koperasic45_id'])) {
     header("location:index.php?menu=forbidden");
 }
 
+if (($_SESSION['koperasi_c45_id'])==2) {
+    header("location:index.php?menu=forbidden");
+}
+
+
 include_once "database.php";
 include_once "fungsi.php";
 include_once "proses_mining.php";

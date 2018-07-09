@@ -1,5 +1,10 @@
 <?php
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
+
+if (($_SESSION['koperasi_c45_id'])==2) {
+    header("location:index.php?menu=forbidden");
+}
+
 include_once "database.php";
 include_once "fungsi.php";
 include_once "proses_mining.php";

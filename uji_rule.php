@@ -1,5 +1,9 @@
 <?php
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
+if (($_SESSION['koperasi_c45_id'])==2) {
+    header("location:index.php?menu=forbidden");
+}
+
 include_once "database.php";
 include_once "import/excel_reader2.php";
 include_once "fungsi.php";

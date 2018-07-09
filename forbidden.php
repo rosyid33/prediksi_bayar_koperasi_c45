@@ -1,10 +1,22 @@
-<div class="content-wrapper">
-    <div class="inner-container container">
+<!-- start: PAGE -->
+<div class="main-content">
+    <div class="container">
+        <!-- start: PAGE HEADER -->
         <div class="row">
-            <div class="section-header col-md-12">
-                <h2>403 - Forbidden Error !</h2>
-            </div> <!-- /.section-header -->
-        </div> <!-- /.row -->
+            <div class="col-sm-12">
+                <?php
+                //include "styleSelectorBox.php";
+                ?>
+                <!-- start: PAGE TITLE & BREADCRUMB -->
+                
+                <div class="page-header">
+                    <h1>403 - Forbidden Error !</h1>
+                </div>
+                <!-- end: PAGE TITLE & BREADCRUMB -->
+            </div>
+        </div>
+        <!-- end: PAGE HEADER -->
+
         <div class="row">
             <div class="col-md-12">
                 <div class="box-content">
