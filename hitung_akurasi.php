@@ -84,16 +84,28 @@ include_once "proses_mining.php";
 //perhitungan akurasi
             $que = $db_object->db_query("SELECT * FROM data_uji");
             $jumlah_uji = $db_object->db_num_rows($que);
-            //$TP=0; $FN=0; $TN=0; $FP=0; $kosong=0;
-            $TA = $FB = $FC = $FD = $FE = $TF = $FG = $FH = $FI = $FJ = $TK = $FL = $FM = $FN = $FO = $TP = 0;
+            $TP=0; $FN=0; $TN=0; $FP=0; $kosong=0;
+            //$TA = $FB = $FC = $FD = $FE = $TF = $FG = $FH = $FI = $FJ = $TK = $FL = $FM = $FN = $FO = $TP = 0;
             $kosong =$tepat = $tidak_tepat =  0;
             while ($row = $db_object->db_fetch_array($que)) {
                 $asli = $row['kelas_asli'];
                 $prediksi = $row['kelas_hasil'];
                 if($asli==$prediksi){
+                    if($asli=='lancar'){
+                        $TP++;
+                    }
+                    else{
+                        $TN++;
+                    }
                     $tepat++;
                 }
                 else{
+                    if($asli=='lancar'){
+                        $FN++;
+                    }
+                    else{
+                        $FP++;
+                    }
                     $tidak_tepat++;
                 }
             }
@@ -101,8 +113,8 @@ include_once "proses_mining.php";
 //            $tidak_tepat = ($FB + $FC + $FD + $FE + $FG + $FH + $FI + $FJ + $FL + $FM + $FN + $FO + $kosong);
             $akurasi = ($tepat / $jumlah_uji) * 100;
             $laju_error = ($tidak_tepat / $jumlah_uji) * 100;
-//                        $sensitivitas=($TP/($TP+$FN))*100;
-//                        $spesifisitas=($TN/($FP+$TN))*100;
+                        $sensitivitas=round(($TP/($TP+$FN))*100, 2);
+                        $spesifisitas=round(($TN/($FP+$TN))*100, 2);
 
             $akurasi = round($akurasi, 2);
             $laju_error = round($laju_error, 2);
@@ -115,7 +127,13 @@ include_once "proses_mining.php";
                 echo "Jumlah data yang prediksinya kosong: $kosong<br></h4>";
             }
             echo "<h2>AKURASI = $akurasi %<br>";
-            echo "LAJU ERROR = $laju_error %<br></h2>";
+            echo "LAJU ERROR = $laju_error %<br><h2>";
+            
+            echo "<h3>";
+            echo "TP=$TP  TN=$TN  FP=$FP  FN=$FN<br>";
+            echo "Sensitivitas = $sensitivitas %<br>";
+            echo "Spesifisitas = $spesifisitas %<br>";
+                echo "</h3>";
             ?>
         </div>
     </div>
